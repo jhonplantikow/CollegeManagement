@@ -1,0 +1,23 @@
+<h1 id="tableLabel">List of student by Subject</h1>
+
+<p>This component demonstrates grades of students of subjects.</p>
+
+<p *ngIf="!students"><em>Loading...</em></p>
+
+
+<table class='table table-striped' aria-labelledby="tableLabel" *ngIf="students">
+  <thead>
+    <tr>
+      <th>Student Name</th>
+      <th>Subjects</th>
+      <th>Grades</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let student of students">
+      <td>{{ student.studentName }}</td>
+      <td>{{ student.subject }}</td>
+      <td>{{ student.grade }}</td>  
+    </tr>
+  </tbody>
+</table>

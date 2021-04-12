@@ -1,0 +1,60 @@
+<h1 id="tableLabel">Students</h1>
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-lg-4"></div>
+    <div class="col-lg-4">
+      <form [formGroup]="studentForm" autofocus (ngSubmit)="submitForm();">        
+        <div class="form-group">
+          <label for="name">Student Name</label>
+          <input type="text" class="form-control" formControlName="name" id="name"/>
+        </div>
+        <div *ngIf="name.touched && name.errors?.required" class="alert alert-danger">
+          This field is required!
+        </div>
+        <div class="form-group">
+          <label for="birthday">Birth Date</label>
+          <input type="date" value="MM/dd/yyyy" class="form-control" formControlName="birthday" />
+        </div>
+        <div *ngIf="birthday.touched && birthday.errors?.required" class="alert alert-danger">
+          This field is required!
+        </div>
+        <button type="submit" class="btn btn-primary">Save</button>
+      </form>
+    </div>
+    <div class="col-lg-4"></div>
+  </div>
+</div>
+
+<h1 id="tableLabel">List of students</h1>
+<p *ngIf="!students"><em>Loading...</em></p>
+<table class='table table-striped' aria-labelledby="tableLabel" *ngIf="students">
+  <thead>
+    <tr>
+      <th>Student Number</th>
+      <th>Name</th>
+      <th>Birthday date</th>
+      <th>Update</th>
+      <th>Delete</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let student of students">
+      <td>{{ student.id }}</td>
+      <td>{{ student.name }}</td>
+      <td>{{ student.birthday |  date:'MM/dd/yyyy'}}</td>
+      <td>
+        <button type="button" class="btn btn-outline-secondary" (click)="bindForm(student)">
+          <img class="bi bi-pencil" width="16" height="16" fill="currentColor" />
+          <span class="visually-hidden"></span>
+        </button>
+      </td>
+      <td>
+        <button type="button" class="btn btn-outline-secondary" (click)="delete(student.id)">
+          <img class="bi bi-trash" width="16" height="16" fill="currentColor" />
+          <span class="visually-hidden"></span>
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>
