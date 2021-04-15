@@ -10,10 +10,10 @@ namespace Infrastructure.DB
         public CollegeDBContext() : base("DBContext")
         {
             this.Configuration.LazyLoadingEnabled = false;
-            //Database.SetInitializer<CollegeDBContext>(new CreateDatabaseIfNotExists<CollegeDBContext>());
+            Database.SetInitializer<CollegeDBContext>(new CreateDatabaseIfNotExists<CollegeDBContext>());
             //Database.SetInitializer<CollegeDBContext>(new DropCreateDatabaseAlways<CollegeDBContext>());
            // Database.SetInitializer<CollegeDBContext>(new DropCreateDatabaseIfModelChanges<CollegeDBContext>());
-            //Database.SetInitializer<CollegeDBContext>(new Infrastructure.Seed.CollegeInitializer());            
+            Database.SetInitializer<CollegeDBContext>(new Infrastructure.Seed.CollegeInitializer());            
         }
 
         public DbSet<Student> Student { get; set; }
